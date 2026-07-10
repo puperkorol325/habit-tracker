@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { Habit } from "./types/Habit";
 
 type State = {
     habits: Habit[];

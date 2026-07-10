@@ -1,0 +1,26 @@
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.formTitle {
+    font-family: var(--font-googlesans);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-black80);
+}
+
+.fieldContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.loginInputText {
+    width: 100%;
+    box-shadow: 0 0 3px 1px var(--color-black30);
+    padding: 8px 12px;
+}
