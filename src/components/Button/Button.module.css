@@ -1,0 +1,7 @@
+.button {
+    font-family: var(--font-googlesans);
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: 0.2s all;
+}

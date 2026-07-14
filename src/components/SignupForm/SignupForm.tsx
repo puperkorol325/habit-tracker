@@ -1,20 +1,25 @@
 import React from "react";
-import styles from "./LoginForm.module.css";
+import styles from "./SignupForm.module.css";
 import TextInput from "../TextInput/TextInput";
 import Button from "../Button/Button";
 import { ChosenForm } from "../../pages/LoginPage/LoginPage";
 
-interface ILoginFormProps {
+interface ISignupFormProps {
     onSubmit: (e: React.SubmitEvent<HTMLFormElement>) => void;
     changeForm: React.Dispatch<React.SetStateAction<ChosenForm>>;
 }
 
-const LoginForm: React.FC<ILoginFormProps> = ({ onSubmit, changeForm }) => {
+const SignupForm: React.FC<ISignupFormProps> = ({ onSubmit, changeForm }) => {
 
     return (
         <form className={styles.form} onSubmit= { (e) => onSubmit(e) }>
-            <h2 className={styles.formTitle}>Log in</h2>
+            <h2 className={styles.formTitle}>Sign up</h2>
             <div className={styles.inputContainer}>
+                <TextInput 
+                    id="name" 
+                    labelText="Name" 
+                    inputName="name"
+                    type="text" />
                 <TextInput 
                     id="email" 
                     labelText="E-mail" 
@@ -28,23 +33,19 @@ const LoginForm: React.FC<ILoginFormProps> = ({ onSubmit, changeForm }) => {
             </div>
             <div className={styles.buttonsContainer}>
                 <Button 
-                    text="Log in"
+                    text="Sign up"
                     className={styles.submitButton}
                     type="submit"
                     />
             </div>
             <div className={styles.otherOptions}>
                 <button
-                    onClick={ () => changeForm('signup') }
+                    onClick={ () => changeForm('login') }
                     className={styles.option}
-                    >Sign up</button>
-                <button
-                    onClick={ () => changeForm('reset') }
-                    className={styles.option}
-                    >Forgot password</button>
+                    >I already have an account</button>
             </div>
         </form>
     )
 };
 
-export default LoginForm;
+export default SignupForm;

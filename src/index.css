@@ -37,9 +37,3 @@ label {
   font-family: var(--font-googlesans);
 }
 
-.defaultInput {
-  border-radius: 12px;
-  outline: none !important;
-  border: none;
-}
-

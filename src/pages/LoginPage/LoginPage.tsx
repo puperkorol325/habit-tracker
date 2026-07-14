@@ -1,12 +1,32 @@
 import React, { useState } from "react";
 import styles from "./LoginPage.module.css";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import SignupForm from "../../components/SignupForm/SignupForm";
+import ResetPasswordForm from "../../components/ResetPasswordForm/ResetPasswordForm";
+
+export type ChosenForm = 'login' | 'signup' | 'reset';
 
 const LoginPage: React.FC = () => {
 
-    type ChosenForm = 'login' | 'signup' | 'reset';
-
     const [chosenForm, setChosenForm] = useState<ChosenForm>('login');
+
+    const loginFormOnSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        return;
+    };
+
+    const signupFormOnSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        return;
+    };
+
+    const resetFormOnSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        return;
+    };
 
     return (
         <div className={styles.loginPageWrapper}>
@@ -22,7 +42,22 @@ const LoginPage: React.FC = () => {
                         <p className={styles.subtitle}>Your saviour in tracking habits</p>
                     </div>
                     {chosenForm === 'login' && (
-                        <LoginForm />
+                        <LoginForm
+                            onSubmit={loginFormOnSubmit}
+                            changeForm={setChosenForm}
+                            />
+                    )}
+                    {chosenForm === 'signup' && (
+                        <SignupForm
+                            onSubmit={signupFormOnSubmit}
+                            changeForm={setChosenForm}
+                            />
+                    )}
+                    {chosenForm === 'reset' && (
+                        <ResetPasswordForm
+                            onSubmit={resetFormOnSubmit}
+                            changeForm={setChosenForm}
+                            />
                     )}
                 </div>
             </div>

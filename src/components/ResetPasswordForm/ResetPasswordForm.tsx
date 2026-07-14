@@ -1,50 +1,41 @@
 import React from "react";
-import styles from "./LoginForm.module.css";
+import styles from "./ResetPasswordForm.module.css";
 import TextInput from "../TextInput/TextInput";
 import Button from "../Button/Button";
 import { ChosenForm } from "../../pages/LoginPage/LoginPage";
 
-interface ILoginFormProps {
+interface IResetPasswordFormProps {
     onSubmit: (e: React.SubmitEvent<HTMLFormElement>) => void;
     changeForm: React.Dispatch<React.SetStateAction<ChosenForm>>;
 }
 
-const LoginForm: React.FC<ILoginFormProps> = ({ onSubmit, changeForm }) => {
+const ResetPasswordForm: React.FC<IResetPasswordFormProps> = ({ onSubmit, changeForm }) => {
 
     return (
         <form className={styles.form} onSubmit= { (e) => onSubmit(e) }>
-            <h2 className={styles.formTitle}>Log in</h2>
+            <h2 className={styles.formTitle}>Reset password</h2>
             <div className={styles.inputContainer}>
                 <TextInput 
                     id="email" 
                     labelText="E-mail" 
                     inputName="email"
                     type="email" />
-                <TextInput 
-                    id="password" 
-                    labelText="Password" 
-                    inputName="password"
-                    type="password" />
             </div>
             <div className={styles.buttonsContainer}>
                 <Button 
-                    text="Log in"
+                    text="Reset"
                     className={styles.submitButton}
                     type="submit"
                     />
             </div>
             <div className={styles.otherOptions}>
                 <button
-                    onClick={ () => changeForm('signup') }
+                    onClick={ () => changeForm('login') }
                     className={styles.option}
-                    >Sign up</button>
-                <button
-                    onClick={ () => changeForm('reset') }
-                    className={styles.option}
-                    >Forgot password</button>
+                    >Back to loging in</button>
             </div>
         </form>
     )
 };
 
-export default LoginForm;
+export default ResetPasswordForm;
