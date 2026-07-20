@@ -3,6 +3,7 @@ import styles from "./LoginPage.module.css";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import SignupForm from "../../components/SignupForm/SignupForm";
 import ResetPasswordForm from "../../components/ResetPasswordForm/ResetPasswordForm";
+import RegistrationFunctions from "../../classes/RegistrationFuntions";
 
 export type ChosenForm = 'login' | 'signup' | 'reset';
 
@@ -12,6 +13,11 @@ const LoginPage: React.FC = () => {
 
     const loginFormOnSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const data: FormData = new FormData(e.target);
+        
+        const email = (data.get("email")?.toString() || null);
+        const password = (data.get("password")?.toString() || null);
+        RegistrationFunctions.logInUser(email, password);
 
         return;
     };
