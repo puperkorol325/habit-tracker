@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./LoginPage.module.css";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import SignupForm from "../../components/SignupForm/SignupForm";
@@ -10,6 +10,7 @@ export type ChosenForm = 'login' | 'signup' | 'reset';
 const LoginPage: React.FC = () => {
 
     const [chosenForm, setChosenForm] = useState<ChosenForm>('login');
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const loginFormOnSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -17,14 +18,30 @@ const LoginPage: React.FC = () => {
         
         const email = (data.get("email")?.toString() || null);
         const password = (data.get("password")?.toString() || null);
-        RegistrationFunctions.logInUser(email, password);
 
-        return;
+        const response = RegistrationFunctions.logInUser(email, password);
+        if (response === true) {
+
+        }else {
+            setErrorMessage(response);
+        }
     };
 
     const signupFormOnSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const data: FormData = new FormData(e.target);
+        
+        const email = (data.get("email")?.toString() || null);
+        const password = (data.get("password")?.toString() || null);
+        const name = (data.get("name")?.toString() || null);
 
+        const response = RegistrationFunctions.signUpUser(email, password, name);
+
+        if (response === true) {
+            
+        }else {
+            setErrorMessage(response)
+        }
         return;
     };
 
@@ -33,6 +50,10 @@ const LoginPage: React.FC = () => {
 
         return;
     };
+
+    useEffect(() => {
+        setErrorMessage('');
+    }, [chosenForm]);
 
     return (
         <div className={styles.loginPageWrapper}>
@@ -65,6 +86,7 @@ const LoginPage: React.FC = () => {
                             changeForm={setChosenForm}
                             />
                     )}
+                    <p className={styles.errorMessage}>{errorMessage}</p>
                 </div>
             </div>
         </div>
