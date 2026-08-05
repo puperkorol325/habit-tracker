@@ -4,10 +4,13 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 import SignupForm from "../../components/SignupForm/SignupForm";
 import ResetPasswordForm from "../../components/ResetPasswordForm/ResetPasswordForm";
 import RegistrationFunctions from "../../classes/RegistrationFuntions";
+import { useNavigate } from "react-router";
 
 export type ChosenForm = 'login' | 'signup' | 'reset';
 
 const LoginPage: React.FC = () => {
+
+    const navigate = useNavigate();
 
     const [chosenForm, setChosenForm] = useState<ChosenForm>('login');
     const [errorMessage, setErrorMessage] = useState<string>('');
@@ -21,7 +24,7 @@ const LoginPage: React.FC = () => {
 
         const response = await RegistrationFunctions.logInUser(email, password);
         if (response === true) {
-            
+            navigate("/");
         }else {
             setErrorMessage(response);
         }
@@ -38,7 +41,7 @@ const LoginPage: React.FC = () => {
         const response = await RegistrationFunctions.signUpUser(email, password, name);
 
         if (response === true) {
-            
+            navigate("/");
         }else {
             setErrorMessage(response)
         }
@@ -54,6 +57,12 @@ const LoginPage: React.FC = () => {
     useEffect(() => {
         setErrorMessage('');
     }, [chosenForm]);
+
+    useEffect(() => {
+        if (RegistrationFunctions.isUserLoggedIn()) {
+            navigate("/")
+        }
+    }, [])
 
     return (
         <div className={styles.loginPageWrapper}>

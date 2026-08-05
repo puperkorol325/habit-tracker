@@ -22,16 +22,6 @@ export default class LocalStorageInteractions {
         }
     }
 
-    static isUserLoggedIn(): boolean {
-        const data: LoginData = this.getUsersLoginData();
-
-        if (data.email && data.password) {
-            return true;
-        }else {
-            return false;
-        }
-    }
-
     static getEmail(): string | null {
         return localStorage.getItem(this.EMAIL);
     }

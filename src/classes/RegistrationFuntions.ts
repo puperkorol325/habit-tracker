@@ -46,4 +46,14 @@ export default class RegistrationFunctions {
         LocalStorageInteractions.setUsersData({ ...data, password: await bcrypt.hash(data.password as string, this.ROUNDS) });
         return true;
     }
+
+    static isUserLoggedIn(): boolean {
+        const data: LoginData = LocalStorageInteractions.getUsersLoginData();
+
+        if (data.email && data.password) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
