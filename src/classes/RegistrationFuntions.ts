@@ -1,29 +1,32 @@
 import { LoginData } from "../types/LocalStorageTypes/LoginData";
 import { SignUpData } from "../types/LocalStorageTypes/SignUpData";
 import LocalStorageInteractions from "./LocalStorageInteractions";
+import bcrypt from 'bcryptjs';
 
 export default class RegistrationFunctions {
 
-    private static INCORRECT_DATA_ERROR: string = "Неверно введенные данные";
-    private static FIELDS_NOT_FULLFILLED_ERROR: string = "Заполните все поля";
-    private static USER_ALREADY_EXISTS_ERROR: string = "Пользователь уже существует";
-    private static NICKNAME_ALREADY_USED_ERROR: string = "Пользователь уже существует";
+    private static INCORRECT_DATA_ERROR: string = "Incorrect data";
+    private static FIELDS_NOT_FULLFILLED_ERROR: string = "All fields must be fullfilled";
+    private static USER_ALREADY_EXISTS_ERROR: string = "User already exists";
+    private static NICKNAME_ALREADY_USED_ERROR: string = "Nickname is already used";
 
-    static logInUser(email: string | null, password: string | null): true | string {
+    private static ROUNDS: number = 12;
+
+    static async logInUser(email: string | null, password: string | null): Promise<true | string> {
         const data: LoginData = LocalStorageInteractions.getUsersLoginData();
 
         if (!email || !password) {
             return this.FIELDS_NOT_FULLFILLED_ERROR;
         }
 
-        if (email === data.email && password === data.password) {
+        if (email === data.email && await bcrypt.compare(password, data.password as string)) {
             return true;
         }else {
             return this.INCORRECT_DATA_ERROR;
         }
     }
 
-    static signUpUser(email: string | null, password: string | null, name: string | null): true | string {
+    static async signUpUser(email: string | null, password: string | null, name: string | null): Promise<true | string> {
         const data: SignUpData = { email, password, name };
 
         if (!email || !password || !name) {
@@ -39,7 +42,8 @@ export default class RegistrationFunctions {
         }
 
 
-        LocalStorageInteractions.setUsersData(data);
+
+        LocalStorageInteractions.setUsersData({ ...data, password: await bcrypt.hash(data.password as string, this.ROUNDS) });
         return true;
     }
 }

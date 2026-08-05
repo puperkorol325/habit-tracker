@@ -12,22 +12,22 @@ const LoginPage: React.FC = () => {
     const [chosenForm, setChosenForm] = useState<ChosenForm>('login');
     const [errorMessage, setErrorMessage] = useState<string>('');
 
-    const loginFormOnSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const loginFormOnSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         const data: FormData = new FormData(e.target);
         
         const email = (data.get("email")?.toString() || null);
         const password = (data.get("password")?.toString() || null);
 
-        const response = RegistrationFunctions.logInUser(email, password);
+        const response = await RegistrationFunctions.logInUser(email, password);
         if (response === true) {
-
+            
         }else {
             setErrorMessage(response);
         }
     };
 
-    const signupFormOnSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const signupFormOnSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         const data: FormData = new FormData(e.target);
         
@@ -35,7 +35,7 @@ const LoginPage: React.FC = () => {
         const password = (data.get("password")?.toString() || null);
         const name = (data.get("name")?.toString() || null);
 
-        const response = RegistrationFunctions.signUpUser(email, password, name);
+        const response = await RegistrationFunctions.signUpUser(email, password, name);
 
         if (response === true) {
             
