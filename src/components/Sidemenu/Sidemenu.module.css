@@ -1,0 +1,44 @@
+.sidemenu {
+    width: fit-content;
+    height: 100%;
+    border-right: 1px solid transparent;
+    background: 
+        linear-gradient(var(--color-black10), var(--color-black10)) padding-box, 
+        linear-gradient(to bottom, var(--color-black10) 5%, var(--color-ad-orange50) 20%, var(--color-black10) 90%) border-box;
+    padding: 16px 24px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style-type: none;
+    font-size: 18px;
+    line-height: 20px;
+    font-family: var(--font-googlesans);
+    font-weight: 400;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.active.navItem {
+    color: var(--color-ad-orange50);
+}
+
+.active.navItem path {
+    fill: var(--color-ad-orange50);
+}
+
+.navItem:hover {
+    color: var(--color-ad-orange50);
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
