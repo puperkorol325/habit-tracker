@@ -4,6 +4,7 @@ import RegistrationFunctions from "../../classes/RegistrationFuntions";
 import { useNavigate } from "react-router";
 import Header from "../../components/Header/Header";
 import Sidemenu from "../../components/Sidemenu/Sidemenu";
+import MainPanel from "../../components/MainPanel/MainPanel";
 
 const MainPage: React.FC = () => {
 
@@ -20,6 +21,7 @@ const MainPage: React.FC = () => {
             <Header />
             <main className={styles.content}>
                 <Sidemenu />
+                <MainPanel />
             </main>
         </div>
     )

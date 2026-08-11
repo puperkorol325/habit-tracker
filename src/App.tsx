@@ -14,6 +14,15 @@ function App() {
         <Route path='login' element={ <LoginPage /> } />
         <Route index element={ <MainPage /> } />
       </Routes>
+
+      <svg style={{ display: "none" }}>
+        <defs>
+          <filter id="liquid-refraction">
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+      </svg>
     </div>
   );
 }

@@ -1,11 +1,17 @@
 .sidemenu {
-    width: fit-content;
-    height: 100%;
-    border-right: 1px solid transparent;
-    background: 
-        linear-gradient(var(--color-black10), var(--color-black10)) padding-box, 
-        linear-gradient(to bottom, var(--color-black10) 5%, var(--color-ad-orange50) 20%, var(--color-black10) 90%) border-box;
-    padding: 16px 24px;
+    width: 100%;
+    padding: 24px 32px;
+    border-radius: 16px;
+    box-shadow: 0 0 5px 2px var(--color-black30);
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 6px 12px rgba(255, 255, 255, 0.4),
+        inset 0 -6px 12px rgba(255, 255, 255, 0.1);
 }
 
 .nav {
@@ -26,6 +32,7 @@
     cursor: pointer;
     transition: 0.3s all;
 }
+
 .active.navItem {
     color: var(--color-ad-orange50);
 }

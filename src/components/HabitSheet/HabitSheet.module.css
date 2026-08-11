@@ -1,0 +1,17 @@
+.table {
+    border-spacing: 10px;
+}
+
+.table td,
+.table th {
+    box-shadow: 0 0 3px 1px var(--color-black40);
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.table tr td:first-of-type,
+.table tr th:first-of-type {
+    aspect-ratio: 1 / 1;
+}
+
