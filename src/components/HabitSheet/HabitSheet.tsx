@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./HabitSheet.module.css";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 
 const HabitSheet: React.FC = () => {
+
+    const dispatch = useAppDispatch();
+    const habits = useAppSelector((state) => state.habits);
 
     return (
         <table className={styles.table}>
