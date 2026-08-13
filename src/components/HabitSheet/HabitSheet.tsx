@@ -9,9 +9,7 @@ const HabitSheet: React.FC = () => {
     const habits = useAppSelector((state) => state.habits.habits);
     const days = useAppSelector((state) => state.days.days);
 
-    console.log(days)
-
-    const handleChangeHabitStatus = (habitId: number, isChecked: boolean, date: Date): void => {
+    const handleChangeHabitStatus = (habitId: number, isChecked: boolean, date: string): void => {
 
         if (isChecked) {
             dispatch(uncheckHabit({ habitId, date }));
@@ -30,7 +28,7 @@ const HabitSheet: React.FC = () => {
                         days.map(item => {
 
                             return (
-                                <th key={item.date.toDateString()}>{`${item.date.getDate()}.${item.date.getMonth().toString().padStart(2, "0")}`}</th>
+                                <th key={item.date}>{`${new Date(item.date).getDate()}.${(new Date(item.date).getMonth() + 1).toString().padStart(2, "0")}`}</th>
                             )
                         })
                     }
@@ -48,11 +46,11 @@ const HabitSheet: React.FC = () => {
                                     days.map(item => {
 
                                         const isHabitDone = item.doneHabits.includes(habit.id);
-                                        const isHabitActive = item.date > habit.cretedAt;
+                                        const isHabitActive = new Date(item.date) > new Date(habit.cretedAt);
 
                                         return (
                                             <td
-                                                key={`${habit.id}-${item.date.toDateString()}`}
+                                                key={`${habit.id}-${item.date}`}
                                                 onClick={() => handleChangeHabitStatus(habit.id, isHabitDone, item.date)}
                                                 className={
                                                     `${styles.habitCell} ${isHabitDone ? styles.done : styles.undone} ${isHabitActive ? "" : styles.nonActive}`

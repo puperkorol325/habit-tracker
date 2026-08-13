@@ -8,22 +8,22 @@ type DayState = {
 const initialState: DayState = {
     days: [
         {
-            date: new Date(new Date().setDate(new Date().getDate() - 2)),
+            date: new Date(new Date().setDate(new Date().getDate() - 2)).toDateString(),
             doneHabits: []
         },
         {
-            date: new Date(new Date().setDate(new Date().getDate() - 1)),
+            date: new Date(new Date().setDate(new Date().getDate() - 1)).toDateString(),
             doneHabits: []
         },
         {
-            date: new Date(),
+            date: new Date().toDateString(),
             doneHabits: []
         }
     ]
 };
 
 type checkHabitPayload = {
-    date: Date;
+    date: string;
     habitId: number;
 }
 
@@ -34,26 +34,21 @@ const daySlice = createSlice({
         checkHabit: (state, action: PayloadAction<checkHabitPayload>) => {
 
             state.days.map((item) => {
-                if (item.date === action.payload.date) {
+
+                if (new Date(item.date).getTime() === new Date(action.payload.date).getTime()) {
                     item.doneHabits.push(action.payload.habitId);
                 }
+
                 return item;
             })
         },
         uncheckHabit: (state, action: PayloadAction<checkHabitPayload>) => {
 
-            state.days.map((item) => {
-                if (item.date === action.payload.date) {
-                    item.doneHabits.filter(id => {
-                        if (id === action.payload.habitId) {
-                            return null;
-                        }else {
-                            return id;
-                        }
-                    });
+            for (let i of state.days) {
+                if (new Date(i.date).getTime() === new Date(action.payload.date).getTime()) {
+                    i.doneHabits.filter(id => id !== action.payload.habitId);
                 }
-                return item;
-            })
+            }
         }
     }
 });

@@ -1,7 +1,7 @@
 import { Habit } from "./Habit";
 
 type Day = {
-    date: Date;
+    date: string;
     doneHabits: number[];
 }
 

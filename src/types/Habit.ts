@@ -2,5 +2,5 @@ export type Habit = {
     id: number;
     title: string;
     userID: number;
-    cretedAt: Date;
+    cretedAt: string;
 };

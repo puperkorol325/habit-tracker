@@ -11,7 +11,7 @@ const initialState: HabitState = {
             id: 1,
             userID: 1,
             title: "throw out the trash",
-            cretedAt: new Date("2026-08-10")
+            cretedAt: new Date("2026-07-13").toDateString()
         }
     ]
 };
