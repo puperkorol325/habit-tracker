@@ -6,7 +6,14 @@ type HabitState = {
 }
 
 const initialState: HabitState = {
-    habits: []
+    habits: [
+        {
+            id: 1,
+            userID: 1,
+            title: "throw out the trash",
+            cretedAt: new Date("2026-08-10")
+        }
+    ]
 };
 
 const habitSlice = createSlice({

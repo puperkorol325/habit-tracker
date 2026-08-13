@@ -1,17 +1,35 @@
 .table {
-    border-spacing: 10px;
+    padding-top: 12px;
 }
 
 .table td,
 .table th {
     box-shadow: 0 0 3px 1px var(--color-black40);
-    padding: 12px;
-    border-radius: 8px;
+    padding: 24px;
     text-align: center;
 }
 
 .table tr td:first-of-type,
 .table tr th:first-of-type {
     aspect-ratio: 1 / 1;
+}
+
+.habitCell {
+    padding: 0px !important;
+    cursor: pointer;
+}
+
+.habitCell.undone {
+    background-color: var(--color-habit-undone);
+}
+
+.habitCell.nonActive {
+    background-color: var(--color-black40);
+    cursor: not-allowed;
+    pointer-events: none;   
+}
+
+.habitCell.done {
+    background-color: var(--color-habit-done);
 }
 

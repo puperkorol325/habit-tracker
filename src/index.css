@@ -21,6 +21,8 @@
   --color-ad-orange50: #FFA030;
   --color-ad-orange10: #FFDEB7;
   --color-error: #ed0a0a;
+  --color-habit-undone: #bb6666;
+  --color-habit-done: rgb(116, 187, 102);
   --font-googlesans: "Google Sans", sans-serif;
 }
 

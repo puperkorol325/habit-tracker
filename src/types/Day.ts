@@ -2,7 +2,7 @@ import { Habit } from "./Habit";
 
 type Day = {
     date: Date;
-    Habits: Habit[];
+    doneHabits: number[];
 }
 
 export default Day;
