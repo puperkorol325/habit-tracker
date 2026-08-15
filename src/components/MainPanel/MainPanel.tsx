@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./MainPanel.module.css";
 import ResetIcon from "../../icons/ResetIcon";
 import HabitSheet from "../HabitSheet/HabitSheet";
+import CreateHabitControl from "../CreateHabitControl/CreateHabitControl";
 
 const MainPanel: React.FC = () => {
 
@@ -31,7 +32,8 @@ const MainPanel: React.FC = () => {
             </form>
             <div className={styles.sheet}>
                 <HabitSheet />
-            </div>            
+            </div>
+            <CreateHabitControl />          
         </div>
     );
 };

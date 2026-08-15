@@ -5,20 +5,23 @@ type DayState = {
     days: Day[];
 };
 
+function getWeek(): Day[] {
+
+    const current = new Date();
+    const dayOfWeek = current.getDay();
+
+    current.setDate(current.getDate() - dayOfWeek);
+
+    return Array.from({ length: 7 }, () => {
+        const dateCopy = new Date(current);
+        current.setDate(current.getDate() + 1);
+        return { date: dateCopy.toDateString(), doneHabits: [] };
+    });
+}
+
 const initialState: DayState = {
     days: [
-        {
-            date: new Date(new Date().setDate(new Date().getDate() - 2)).toDateString(),
-            doneHabits: []
-        },
-        {
-            date: new Date(new Date().setDate(new Date().getDate() - 1)).toDateString(),
-            doneHabits: []
-        },
-        {
-            date: new Date().toDateString(),
-            doneHabits: []
-        }
+        ...getWeek()
     ]
 };
 
@@ -44,11 +47,17 @@ const daySlice = createSlice({
         },
         uncheckHabit: (state, action: PayloadAction<checkHabitPayload>) => {
 
-            for (let i of state.days) {
-                if (new Date(i.date).getTime() === new Date(action.payload.date).getTime()) {
-                    i.doneHabits.filter(id => id !== action.payload.habitId);
+            state.days.map((day) => {
+                if (new Date(day.date).getTime() === new Date(action.payload.date).getTime()) {
+                    const index: number = day.doneHabits.findIndex((val) => val === action.payload.habitId);
+
+                    if (index >= 0) {
+                        day.doneHabits.splice(index, 1);
+                    }
                 }
-            }
+
+                return day;
+            });
         }
     }
 });

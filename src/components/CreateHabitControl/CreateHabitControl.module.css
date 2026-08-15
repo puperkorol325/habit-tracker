@@ -1,0 +1,33 @@
+.createHabit {
+    position: absolute;
+    right: 12px; bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(24px) url(#liquid-refraction) saturate(80%);
+    backdrop-filter: blur(24px) url(#liquid-refraction) saturate(80%);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 6px 12px rgba(255, 255, 255, 0.4),
+        inset 0 -6px 12px rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.createHabit:hover {
+    background: rgba(200, 200, 200, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.20),
+        inset 0 6px 12px rgba(255, 255, 255, 0.5),
+        inset 0 -6px 12px rgba(255, 255, 255, 0.2);
+}
+
+.addIcon {
+    width: 24px;
+    height: 24px;
+}

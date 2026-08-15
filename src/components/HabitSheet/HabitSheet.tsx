@@ -28,7 +28,7 @@ const HabitSheet: React.FC = () => {
                         days.map(item => {
 
                             return (
-                                <th key={item.date}>{`${new Date(item.date).getDate()}.${(new Date(item.date).getMonth() + 1).toString().padStart(2, "0")}`}</th>
+                                <th key={item.date}>{`${item.date}`}</th>
                             )
                         })
                     }
