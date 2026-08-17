@@ -3,12 +3,14 @@ import { Habit } from "../types/Habit";
 import Day from "../types/Day";
 import { habitReducer } from "./habitSlice";
 import { dayReducer } from "./daySlice";
+import { createPopupReducer } from "./createPopupSlice";
 
 
 export const store = configureStore({
     reducer: {
         habits: habitReducer,
-        days: dayReducer
+        days: dayReducer,
+        createPopup: createPopupReducer
     }
 });
 

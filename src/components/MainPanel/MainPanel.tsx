@@ -11,6 +11,10 @@ const MainPanel: React.FC = () => {
         starred: boolean;
     }
 
+    function createHabitHandler(): void {
+        
+    }
+
     return (
         <div className={styles.mainPanel}>
             <form className={styles.filters}>
