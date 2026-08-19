@@ -7,12 +7,7 @@ type HabitState = {
 
 const initialState: HabitState = {
     habits: [
-        {
-            id: 1,
-            userID: 1,
-            title: "throw out the trash",
-            cretedAt: new Date("2026-07-13").toDateString()
-        }
+
     ]
 };
 
@@ -20,13 +15,18 @@ const habitSlice = createSlice({
     name: "habit",
     initialState,
     reducers: {
-        create: (state, action: PayloadAction<Habit>) => {
+        createHabit: (state, action: PayloadAction<string>) => {
             return {
                 ...state,
-                habits: [...state.habits, action.payload],
+                habits: [...state.habits,  { 
+                    title: action.payload, 
+                    userID: 1,
+                    cretedAt: new Date().toDateString(), 
+                    id: (state.habits[state.habits.length-1]?.id || 0)+1 
+                }],
             };
         },
-        remove: (state, action: PayloadAction<number>) => {
+        removeHabit: (state, action: PayloadAction<number>) => {
             return {
                 ...state,
                 habits: [...state.habits.filter(item => item.id !== action.payload)],
@@ -37,4 +37,4 @@ const habitSlice = createSlice({
 
 export const habitReducer =  habitSlice.reducer;
 
-export const { create, remove } = habitSlice.actions;
+export const { createHabit,  removeHabit } = habitSlice.actions;

@@ -3,7 +3,90 @@
     top: 0; left: 0;
     width: 100%;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     backdrop-filter: blur(3px);
-    background-color: #00000020;
+    background-color: #00000010;
     z-index: 10;
+}
+
+.popupContainer {
+    width: 476px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.681) 50%, rgba(255, 255, 255, 0.3) 90%),
+                radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.681) 50%, rgba(255, 255, 255, 0.3) 90%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(1px) url(#liquid-refraction) saturate(10%);
+    backdrop-filter: blur(1px) url(#liquid-refraction) saturate(10%);
+    border-radius: 24px;
+}
+
+.containerTop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.closeButton {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.popupTitle {
+    font-family: var(--font-googlesans);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-black100);
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    font-family: var(--font-googlesans);
+    color: var(--color-black80);
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.input {
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--color-black40);
+    font-family: var(--font-googlesans);
+    font-size: 16px;
+}
+
+.submitButton {
+    width: fit-content;
+    padding: 6px 16px;
+    background-color: var(--color-white);
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-family: var(--font-googlesans);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submitButton:hover {
+    background-color: var(--color-black30);
 }
