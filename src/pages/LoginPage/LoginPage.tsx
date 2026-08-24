@@ -60,7 +60,7 @@ const LoginPage: React.FC = () => {
 
     useEffect(() => {
         if (RegistrationFunctions.isUserLoggedIn()) {
-            navigate("/")
+            navigate("/home")
         }
     }, [])
 

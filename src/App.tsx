@@ -5,6 +5,8 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import { Route, Routes } from 'react-router';
 import MainPage from './pages/MainPage/MainPage';
 import LoginForm from './components/LoginForm/LoginForm';
+import MainPanel from './components/MainPanel/MainPanel';
+import ProfilePanel from './components/ProfilePanel/ProfilePanel';
 
 
 function App() {
@@ -12,7 +14,10 @@ function App() {
     <div className="wrapper">
       <Routes>
         <Route path='login' element={ <LoginPage /> } />
-        <Route index element={ <MainPage /> } />
+        <Route element={ <MainPage /> }>
+          <Route index path='home' element={ <MainPanel /> }/>
+          <Route path='profile' element={ <ProfilePanel /> }/>
+        </Route>
       </Routes>
 
       <svg style={{ display: "none" }}>

@@ -6,6 +6,8 @@ const Header: React.FC = () => {
 
     const [username, setUsername] = useState<string | null>("");
 
+    const pfp = LocalStorageInteractions.getUsersPFP();
+
     useEffect(() => {
         setUsername(LocalStorageInteractions.getName());
     }, []);
@@ -15,7 +17,10 @@ const Header: React.FC = () => {
             <h1 className={styles.title}>Habit-tracker</h1>
             <div className={styles.profileInfoContainer}>
                 <p className={styles.username}>{username}</p>
-                <img className={styles.pfp} src={require("../../images/default-pfp.jpg")} alt="Profile picture" />
+                <img 
+                    className={styles.pfp} 
+                    src={ pfp ? pfp : require("../../images/default-pfp.jpg") } 
+                    alt="Profile picture" />
             </div>
         </header>
     )

@@ -11,5 +11,7 @@ You may choose time ranges for your habit you needed. For instance: daily, weekl
  - React
  - Typescript
  - Redux Toolkit
+ - Redux
+ - React Router
 
 (The list of used technologies will be filling up)

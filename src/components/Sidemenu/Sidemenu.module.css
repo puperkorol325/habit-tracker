@@ -28,9 +28,11 @@
     font-size: 18px;
     line-height: 20px;
     font-family: var(--font-googlesans);
+    color: var(--color-black100);
     font-weight: 400;
     cursor: pointer;
     transition: 0.3s all;
+    text-decoration: none;
 }
 
 .active.navItem {

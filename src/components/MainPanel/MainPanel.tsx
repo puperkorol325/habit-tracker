@@ -16,7 +16,7 @@ const MainPanel: React.FC = () => {
     }
 
     return (
-        <div className={styles.mainPanel}>
+        <>
             <form className={styles.filters}>
                 <div className={styles.filter}>
                     <input type="radio" name="status" id="done" />
@@ -37,8 +37,8 @@ const MainPanel: React.FC = () => {
             <div className={styles.sheet}>
                 <HabitSheet />
             </div>
-            <CreateHabitControl />          
-        </div>
+            <CreateHabitControl /> 
+        </>        
     );
 };
 

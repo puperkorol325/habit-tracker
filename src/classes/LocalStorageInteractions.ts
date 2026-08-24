@@ -5,7 +5,8 @@ export default class LocalStorageInteractions {
 
     private static EMAIL = "users_email";
     private static PASSWORD = "users_password";
-    private static NAME = "users_name"; 
+    private static NAME = "users_name";
+    private static PFP = "users_pfp";
 
     static getUsersLoginData(): LoginData {
         const email = localStorage.getItem(this.EMAIL);
@@ -29,8 +30,19 @@ export default class LocalStorageInteractions {
     static getName(): string | null {
         return localStorage.getItem(this.NAME);
     }
+    static setName(name: string): void {
+        localStorage.setItem(this.NAME, name);
+    }
 
     static getPassword(): string | null {
         return localStorage.getItem(this.PASSWORD);
+    }
+
+    static getUsersPFP(): string | null {
+        return localStorage.getItem(this.PFP);
+    }
+
+    static setUsersPFP(base64img: string): void {
+        localStorage.setItem(this.PFP, base64img);
     }
 }

@@ -1,0 +1,113 @@
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.title {
+    font-family: var(--font-googlesans);
+    font-weight: 600;
+    color: var(--color-black90);
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.mainInfo {
+    width: 100%;
+    display: flex;
+    gap: 24px;
+}
+
+.usersPfp {
+    width: 186px;
+    height: 186px;
+    border-radius: 16px;
+    transition: 0.3s all;
+    object-fit: cover;
+}
+
+.imageLabel {
+    position: relative;
+    cursor: pointer;
+}
+
+.cameraIcon {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 48px;
+    height: 48px;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s all;
+}
+
+.imageLabel:hover .cameraIcon {
+    visibility: visible;
+    opacity: 1;
+}
+
+.imageLabel:hover .usersPfp {
+    filter: brightness(0.8) blur(1px);
+}
+
+.pfpInput {
+    display: none;
+}
+
+.mainInfoRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.formField {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    font-family: var(--font-googlesans);
+    font-weight: 500;
+    color: var(--color-black80);
+    font-size: 16px;
+}
+
+.emailString {
+    font-family: var(--font-googlesans);
+    font-weight: 500;
+    color: var(--color-black100);
+    font-size: 18px;
+}
+
+.textInput {
+    width: 50%;
+    padding: 6px 12px;
+    background-color: var(--color-black30);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: var(--font-googlesans);
+}
+
+.saveButton {
+    width: fit-content;
+    justify-self: flex-end;
+    padding: 12px 48px;
+    background-color: var(--color-ad-orange50);
+    font-size: 16px;
+    font-family: var(--font-googlesans);
+    font-weight: 500;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.saveButton:hover {
+    background-color: var(--color-ad-orange10);
+}
