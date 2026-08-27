@@ -22,7 +22,8 @@ const habitSlice = createSlice({
                     title: action.payload, 
                     userID: 1,
                     cretedAt: new Date().toDateString(), 
-                    id: (state.habits[state.habits.length-1]?.id || 0)+1 
+                    id: (state.habits[state.habits.length-1]?.id || 0)+1,
+                    starred: false
                 }],
             };
         },
@@ -32,9 +33,15 @@ const habitSlice = createSlice({
                 habits: [...state.habits.filter(item => item.id !== action.payload)],
             };
         },
+        starHabit: (state, action: PayloadAction<number>) => {
+            return {
+                ...state,
+                habits: [...state.habits.map(item => item.id === action.payload ? { ...item, starred: !item.starred } : item)]
+            };
+        },
     }
 });
 
 export const habitReducer =  habitSlice.reducer;
 
-export const { createHabit,  removeHabit } = habitSlice.actions;
+export const { createHabit,  removeHabit, starHabit } = habitSlice.actions;

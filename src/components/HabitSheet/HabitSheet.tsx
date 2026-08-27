@@ -2,6 +2,12 @@ import React, { useEffect } from "react";
 import styles from "./HabitSheet.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { checkHabit, uncheckHabit } from "../../state/daySlice";
+import { starHabit } from "../../state/habitSlice";
+import IFilterConditions from "../../interfaces/IFilterConditions";
+
+interface IHabitSheetProps {
+    filter: IFilterConditions;
+}
 
 const HabitSheet: React.FC = () => {
 
@@ -16,6 +22,11 @@ const HabitSheet: React.FC = () => {
         }else {
             dispatch(checkHabit({ habitId, date }));
         }
+    }
+
+    const handleStarHabit = (habitId: number): void => {
+
+        dispatch(starHabit(habitId));
     }
 
     return (
@@ -40,7 +51,13 @@ const HabitSheet: React.FC = () => {
 
                         return (
                             <tr key={habit.id}>
-                                <td><input type="checkbox" name="" id="" /></td>
+                                <td>
+                                    <input 
+                                        type="checkbox" 
+                                        checked={habit.starred ? true : false}
+                                        onChange={() => handleStarHabit(habit.id)}
+                                        />
+                                </td>
                                 <td>{habit.title}</td>
                                 {
                                     days.map(item => {

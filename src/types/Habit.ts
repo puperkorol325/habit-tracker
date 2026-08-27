@@ -3,4 +3,5 @@ export type Habit = {
     title: string;
     userID: number;
     cretedAt: string;
+    starred: boolean;
 };

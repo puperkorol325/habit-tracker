@@ -2,11 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LoginPage from './pages/LoginPage/LoginPage';
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import MainPage from './pages/MainPage/MainPage';
 import LoginForm from './components/LoginForm/LoginForm';
 import MainPanel from './components/MainPanel/MainPanel';
 import ProfilePanel from './components/ProfilePanel/ProfilePanel';
+import NotFound from './pages/NotFound/NotFound';
 
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
           <Route index path='home' element={ <MainPanel /> }/>
           <Route path='profile' element={ <ProfilePanel /> }/>
         </Route>
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <svg style={{ display: "none" }}>
