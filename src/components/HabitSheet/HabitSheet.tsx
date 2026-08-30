@@ -1,19 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./HabitSheet.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { checkHabit, uncheckHabit } from "../../state/daySlice";
 import { starHabit } from "../../state/habitSlice";
 import IFilterConditions from "../../interfaces/IFilterConditions";
+import Day from "../../types/Day";
 
 interface IHabitSheetProps {
     filter: IFilterConditions;
 }
 
-const HabitSheet: React.FC = () => {
+const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
 
     const dispatch = useAppDispatch();
     const habits = useAppSelector((state) => state.habits.habits);
     const days = useAppSelector((state) => state.days.days);
+
+    const [shownDays, setShownDays] = useState<Day[]>([]);
 
     const handleChangeHabitStatus = (habitId: number, isChecked: boolean, date: string): void => {
 
@@ -29,6 +32,18 @@ const HabitSheet: React.FC = () => {
         dispatch(starHabit(habitId));
     }
 
+    
+    useEffect(() => {
+        const today = new Date();
+        const todayDayOfWeek = new Date().getDay();
+
+        const beginingOfTheWeek = new Date();
+
+        beginingOfTheWeek.setDate(today.getDate() - todayDayOfWeek)
+
+        setShownDays(days.slice(days.findIndex(item => item.date === beginingOfTheWeek.toDateString())));
+    }, []);
+
     return (
         <table className={styles.table}>
             <thead>
@@ -36,7 +51,7 @@ const HabitSheet: React.FC = () => {
                     <th>⭐</th>
                     <th>Habit</th>
                     {
-                        days.map(item => {
+                        shownDays.map(item => {
 
                             return (
                                 <th key={item.date}>{`${item.date}`}</th>
@@ -49,35 +64,52 @@ const HabitSheet: React.FC = () => {
                 {
                     habits.map(habit => {
 
-                        return (
-                            <tr key={habit.id}>
-                                <td>
-                                    <input 
-                                        type="checkbox" 
-                                        checked={habit.starred ? true : false}
-                                        onChange={() => handleStarHabit(habit.id)}
-                                        />
-                                </td>
-                                <td>{habit.title}</td>
-                                {
-                                    days.map(item => {
+                        let filterResult: boolean = true;
+                        const today: string = new Date().toDateString();
 
-                                        const isHabitDone = item.doneHabits.includes(habit.id);
-                                        const isHabitActive = new Date(item.date) > new Date(habit.cretedAt);
+                        if (filter.isDone !== null) {
+                            const todayHabitStatus: boolean | undefined = days.find(day => day.date === today)?.doneHabits.includes(habit.id);
 
-                                        return (
-                                            <td
-                                                key={`${habit.id}-${item.date}`}
-                                                onClick={() => handleChangeHabitStatus(habit.id, isHabitDone, item.date)}
-                                                className={
-                                                    `${styles.habitCell} ${isHabitDone ? styles.done : styles.undone} ${isHabitActive ? "" : styles.nonActive}`
-                                                }>
-                                            </td>
-                                        )
-                                    })
-                                }
-                            </tr>
-                        )
+                            if (todayHabitStatus !== filter.isDone) {
+                                filterResult = false;
+                            }
+                        }
+
+                        if (filter.isStarred && !habit.starred) {
+                            filterResult = false;
+                        }
+
+                        if (filterResult) {
+                            return (
+                                <tr key={habit.id}>
+                                    <td>
+                                        <input 
+                                            type="checkbox" 
+                                            checked={habit.starred ? true : false}
+                                            onChange={() => handleStarHabit(habit.id)}
+                                            />
+                                    </td>
+                                    <td>{habit.title}</td>
+                                    {
+                                        shownDays.map(item => {
+
+                                            const isHabitDone = item.doneHabits.includes(habit.id);
+                                            const isHabitActive = new Date(item.date) >= new Date(habit.cretedAt);
+
+                                            return (
+                                                <td
+                                                    key={`${habit.id}-${item.date}`}
+                                                    onClick={() => handleChangeHabitStatus(habit.id, isHabitDone, item.date)}
+                                                    className={
+                                                        `${styles.habitCell} ${isHabitDone ? styles.done : styles.undone} ${isHabitActive ? "" : styles.nonActive}`
+                                                    }>
+                                                </td>
+                                            )
+                                        })
+                                    }
+                                </tr>
+                            )   
+                        }
                     })
                 }
             </tbody>

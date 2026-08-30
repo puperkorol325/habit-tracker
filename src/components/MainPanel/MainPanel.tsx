@@ -4,6 +4,7 @@ import ResetIcon from "../../icons/ResetIcon";
 import HabitSheet from "../HabitSheet/HabitSheet";
 import CreateHabitControl from "../CreateHabitControl/CreateHabitControl";
 import IFilterConditions from "../../interfaces/IFilterConditions";
+import Day from "../../types/Day";
 
 const MainPanel: React.FC = () => {
 
@@ -77,7 +78,7 @@ const MainPanel: React.FC = () => {
                 </button>
             </form>
             <div className={styles.sheet}>
-                <HabitSheet />
+                <HabitSheet  filter={filter}/>
             </div>
             <CreateHabitControl /> 
         </>        

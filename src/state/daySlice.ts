@@ -5,23 +5,33 @@ type DayState = {
     days: Day[];
 };
 
-function getWeek(): Day[] {
+function getDaysFromAugust(): Day[] {
 
     const current = new Date();
     const dayOfWeek = current.getDay();
 
+    const theFirstOfAugust: Date = new Date("08-01-2026");
+
     current.setDate(current.getDate() - dayOfWeek);
 
-    return Array.from({ length: 7 }, () => {
+    const numberOfDays: number = current.getDate() - theFirstOfAugust.getDate();
+    
+    current.setDate(theFirstOfAugust.getDate());
+
+    return Array.from({ length: numberOfDays }, () => {
         const dateCopy = new Date(current);
         current.setDate(current.getDate() + 1);
-        return { date: dateCopy.toDateString(), doneHabits: [] };
+
+        return { 
+            date: dateCopy.toDateString(), 
+            doneHabits: [] 
+        };
     });
 }
 
 const initialState: DayState = {
     days: [
-        ...getWeek()
+        ...getDaysFromAugust()
     ]
 };
 
