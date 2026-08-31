@@ -1,27 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Day, { Days } from "../types/Day";
 import { aC } from "react-router/dist/development/data-CjO11-hU";
+import LocalStorageInteractions from "../classes/LocalStorageInteractions";
 
 type DayState = {
     days: Days;
 };
 
-function getDaysFromAugust(): Days {
+function getAllDays(): Days {
 
-    const current = new Date();
-
-    const theFirstOfAugust: Date = new Date("08-01-2026");
-
-    const numberOfDays: number = current.getDate() - theFirstOfAugust.getDate() + 1;
+    const theFirstDay: Date = new Date(LocalStorageInteractions.getData() || "08-01-2026");
     
-    current.setDate(theFirstOfAugust.getDate());
+    const current = new Date(theFirstDay.toDateString());
 
     const days: { [date: string]: Day } = {
 
     };
+    
+    const today = new Date();
 
-    for (let i = 0; i < numberOfDays; i++) {
-        days[current.toDateString()] = [];
+    while (current.getTime() < today.getTime()) {
+        const dayCopy = new Date(current);
+        days[dayCopy.toDateString()] = [];
+
         current.setDate(current.getDate() + 1);
     }
 
@@ -30,7 +31,7 @@ function getDaysFromAugust(): Days {
 
 const initialState: DayState = {
     days: {
-        ...getDaysFromAugust()
+        ...getAllDays()
     }
 };
 

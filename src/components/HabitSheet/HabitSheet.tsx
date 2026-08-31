@@ -8,15 +8,14 @@ import Day, { Days } from "../../types/Day";
 
 interface IHabitSheetProps {
     filter: IFilterConditions;
+    shownDays: string[];
 }
 
-const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
+const HabitSheet: React.FC<IHabitSheetProps> = ({ filter, shownDays }) => {
 
     const dispatch = useAppDispatch();
     const habits = useAppSelector((state) => state.habits.habits);
     const days = useAppSelector((state) => state.days.days);
-
-    const [shownDays, setShownDays] = useState<Days>({});
 
     const handleChangeHabitStatus = (habitId: number, isChecked: boolean, date: string): void => {
 
@@ -25,33 +24,12 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
         }else {
             dispatch(checkHabit({ habitId, date }));
         }
-
-        console.log(days)
     }
 
     const handleStarHabit = (habitId: number): void => {
 
         dispatch(starHabit(habitId));
     }
-
-    
-    useEffect(() => {
-        const today = new Date();
-        const todayDayOfWeek = new Date().getDay();
-
-        const beginingOfTheWeek = new Date();
-
-        beginingOfTheWeek.setDate(today.getDate() - todayDayOfWeek);
-
-        while (beginingOfTheWeek < today) {
-            setShownDays(state => ({
-                ...state,
-                [beginingOfTheWeek.toDateString()]: days[beginingOfTheWeek.toDateString()]
-            }));
-
-            beginingOfTheWeek.setDate(beginingOfTheWeek.getDate() + 1);
-        }
-    }, []);
 
     return (
         <table className={styles.table}>
@@ -60,7 +38,7 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
                     <th>⭐</th>
                     <th>Habit</th>
                     {
-                        Object.keys(shownDays).map(item => {
+                        shownDays.map(item => {
 
                             return (
                                 <th key={item}>{`${item}`}</th>
@@ -100,7 +78,7 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
                                     </td>
                                     <td>{habit.title}</td>
                                     {
-                                        Object.keys(shownDays).map(item => {
+                                        shownDays.map(item => {
 
                                             const isHabitDone = days[item].includes(habit.id);
                                             const isHabitActive = new Date(item) >= new Date(habit.cretedAt);

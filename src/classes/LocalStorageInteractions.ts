@@ -7,6 +7,7 @@ export default class LocalStorageInteractions {
     private static PASSWORD = "users_password";
     private static NAME = "users_name";
     private static PFP = "users_pfp";
+    private static CREATED_AT = "users_created_at";
 
     static getUsersLoginData(): LoginData {
         const email = localStorage.getItem(this.EMAIL);
@@ -20,6 +21,7 @@ export default class LocalStorageInteractions {
             localStorage.setItem(this.EMAIL, data.email);
             localStorage.setItem(this.PASSWORD, data.password);
             localStorage.setItem(this.NAME, data.name);
+            localStorage.setItem(this.CREATED_AT, new Date().toDateString());
         }
     }
 
@@ -30,8 +32,13 @@ export default class LocalStorageInteractions {
     static getName(): string | null {
         return localStorage.getItem(this.NAME);
     }
+
     static setName(name: string): void {
         localStorage.setItem(this.NAME, name);
+    }
+
+    static getData(): string | null {
+        return localStorage.getItem(this.CREATED_AT);
     }
 
     static getPassword(): string | null {
