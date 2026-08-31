@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { checkHabit, uncheckHabit } from "../../state/daySlice";
 import { starHabit } from "../../state/habitSlice";
 import IFilterConditions from "../../interfaces/IFilterConditions";
-import Day from "../../types/Day";
+import Day, { Days } from "../../types/Day";
 
 interface IHabitSheetProps {
     filter: IFilterConditions;
@@ -16,7 +16,7 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
     const habits = useAppSelector((state) => state.habits.habits);
     const days = useAppSelector((state) => state.days.days);
 
-    const [shownDays, setShownDays] = useState<Day[]>([]);
+    const [shownDays, setShownDays] = useState<Days>({});
 
     const handleChangeHabitStatus = (habitId: number, isChecked: boolean, date: string): void => {
 
@@ -25,6 +25,8 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
         }else {
             dispatch(checkHabit({ habitId, date }));
         }
+
+        console.log(days)
     }
 
     const handleStarHabit = (habitId: number): void => {
@@ -39,9 +41,16 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
 
         const beginingOfTheWeek = new Date();
 
-        beginingOfTheWeek.setDate(today.getDate() - todayDayOfWeek)
+        beginingOfTheWeek.setDate(today.getDate() - todayDayOfWeek);
 
-        setShownDays(days.slice(days.findIndex(item => item.date === beginingOfTheWeek.toDateString())));
+        while (beginingOfTheWeek < today) {
+            setShownDays(state => ({
+                ...state,
+                [beginingOfTheWeek.toDateString()]: days[beginingOfTheWeek.toDateString()]
+            }));
+
+            beginingOfTheWeek.setDate(beginingOfTheWeek.getDate() + 1);
+        }
     }, []);
 
     return (
@@ -51,10 +60,10 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
                     <th>⭐</th>
                     <th>Habit</th>
                     {
-                        shownDays.map(item => {
+                        Object.keys(shownDays).map(item => {
 
                             return (
-                                <th key={item.date}>{`${item.date}`}</th>
+                                <th key={item}>{`${item}`}</th>
                             )
                         })
                     }
@@ -68,7 +77,7 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
                         const today: string = new Date().toDateString();
 
                         if (filter.isDone !== null) {
-                            const todayHabitStatus: boolean | undefined = days.find(day => day.date === today)?.doneHabits.includes(habit.id);
+                            const todayHabitStatus: boolean | undefined = days[today].includes(habit.id);
 
                             if (todayHabitStatus !== filter.isDone) {
                                 filterResult = false;
@@ -91,15 +100,15 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter }) => {
                                     </td>
                                     <td>{habit.title}</td>
                                     {
-                                        shownDays.map(item => {
+                                        Object.keys(shownDays).map(item => {
 
-                                            const isHabitDone = item.doneHabits.includes(habit.id);
-                                            const isHabitActive = new Date(item.date) >= new Date(habit.cretedAt);
+                                            const isHabitDone = days[item].includes(habit.id);
+                                            const isHabitActive = new Date(item) >= new Date(habit.cretedAt);
 
                                             return (
                                                 <td
-                                                    key={`${habit.id}-${item.date}`}
-                                                    onClick={() => handleChangeHabitStatus(habit.id, isHabitDone, item.date)}
+                                                    key={`${habit.id}-${item}`}
+                                                    onClick={() => handleChangeHabitStatus(habit.id, isHabitDone, item)}
                                                     className={
                                                         `${styles.habitCell} ${isHabitDone ? styles.done : styles.undone} ${isHabitActive ? "" : styles.nonActive}`
                                                     }>

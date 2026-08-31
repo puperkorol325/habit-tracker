@@ -1,38 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Day from "../types/Day";
+import Day, { Days } from "../types/Day";
+import { aC } from "react-router/dist/development/data-CjO11-hU";
 
 type DayState = {
-    days: Day[];
+    days: Days;
 };
 
-function getDaysFromAugust(): Day[] {
+function getDaysFromAugust(): Days {
 
     const current = new Date();
-    const dayOfWeek = current.getDay();
 
     const theFirstOfAugust: Date = new Date("08-01-2026");
 
-    current.setDate(current.getDate() - dayOfWeek);
-
-    const numberOfDays: number = current.getDate() - theFirstOfAugust.getDate();
+    const numberOfDays: number = current.getDate() - theFirstOfAugust.getDate() + 1;
     
     current.setDate(theFirstOfAugust.getDate());
 
-    return Array.from({ length: numberOfDays }, () => {
-        const dateCopy = new Date(current);
-        current.setDate(current.getDate() + 1);
+    const days: { [date: string]: Day } = {
 
-        return { 
-            date: dateCopy.toDateString(), 
-            doneHabits: [] 
-        };
-    });
+    };
+
+    for (let i = 0; i < numberOfDays; i++) {
+        days[current.toDateString()] = [];
+        current.setDate(current.getDate() + 1);
+    }
+
+    return days;
 }
 
 const initialState: DayState = {
-    days: [
+    days: {
         ...getDaysFromAugust()
-    ]
+    }
 };
 
 type checkHabitPayload = {
@@ -46,28 +45,13 @@ const daySlice = createSlice({
     reducers: {
         checkHabit: (state, action: PayloadAction<checkHabitPayload>) => {
 
-            state.days.map((item) => {
-
-                if (new Date(item.date).getTime() === new Date(action.payload.date).getTime()) {
-                    item.doneHabits.push(action.payload.habitId);
-                }
-
-                return item;
-            })
+            if (!state.days[action.payload.date].includes(action.payload.habitId)) {
+                state.days[action.payload.date].push(action.payload.habitId);
+            }
         },
         uncheckHabit: (state, action: PayloadAction<checkHabitPayload>) => {
 
-            state.days.map((day) => {
-                if (new Date(day.date).getTime() === new Date(action.payload.date).getTime()) {
-                    const index: number = day.doneHabits.findIndex((val) => val === action.payload.habitId);
-
-                    if (index >= 0) {
-                        day.doneHabits.splice(index, 1);
-                    }
-                }
-
-                return day;
-            });
+            state.days[action.payload.date].splice(state.days[action.payload.date].indexOf(action.payload.habitId));
         }
     }
 });
