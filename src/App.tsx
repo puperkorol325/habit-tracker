@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm/LoginForm';
 import MainPanel from './components/MainPanel/MainPanel';
 import ProfilePanel from './components/ProfilePanel/ProfilePanel';
 import NotFound from './pages/NotFound/NotFound';
+import SettingsPanel from './components/SettingsPanel/SettingsPanel';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route element={ <MainPage /> }>
           <Route index path='home' element={ <MainPanel /> }/>
           <Route path='profile' element={ <ProfilePanel /> }/>
+          <Route path='settings' element={ <SettingsPanel /> } />
         </Route>
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="*" element={<NotFound />} />
