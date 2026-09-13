@@ -6,9 +6,10 @@ interface ISwitchProps {
     name: string;
     className?: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
+    checked: boolean;
 }
 
-const Switch: React.FC<ISwitchProps> = ({ id, name, className, onChange }) => {
+const Switch: React.FC<ISwitchProps> = ({ id, name, className, onChange, checked }) => {
 
     return (
         <>
@@ -21,6 +22,7 @@ const Switch: React.FC<ISwitchProps> = ({ id, name, className, onChange }) => {
                     className={styles.checkbox}
                     type="checkbox"
                     onChange={onChange}
+                    checked={checked}
                     />
             </label>
         </>

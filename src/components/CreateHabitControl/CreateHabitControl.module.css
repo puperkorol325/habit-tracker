@@ -11,6 +11,17 @@
     transition: 0.3s all;
 }
 
+:global(.wrapper.dark-theme) .createHabit {
+    background: var(--dark-theme-main-bg-color);
+    border: 1px solid var(--dark-theme-main-border-color);
+    -webkit-backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    box-shadow: 
+        0 20px 40px var(--dark-box-shadow-color1),
+        inset 0 6px 12px var(--dark-box-shadow-color2),
+        inset 0 -6px 12px var(--dark-box-shadow-color3);
+}
+
 .createHabit:hover {
     background: rgba(200, 200, 200, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -23,4 +34,8 @@
 .addIcon {
     width: 24px;
     height: 24px;
+}
+
+.addIcon line {
+    stroke: var(--color-white);
 }

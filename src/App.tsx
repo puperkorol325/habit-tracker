@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
 import LoginPage from './pages/LoginPage/LoginPage';
 import { Navigate, Route, Routes } from 'react-router';
 import MainPage from './pages/MainPage/MainPage';

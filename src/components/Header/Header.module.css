@@ -10,12 +10,27 @@
     composes: lightGlassElement from "../../styles/lightTheme.css";
 }
 
+:global(.wrapper.dark-theme) .header {
+    background: var(--dark-theme-main-bg-color);
+    border: 1px solid var(--dark-theme-main-border-color);
+    -webkit-backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    box-shadow: 
+        0 20px 40px var(--dark-box-shadow-color1),
+        inset 0 6px 12px var(--dark-box-shadow-color2),
+        inset 0 -6px 12px var(--dark-box-shadow-color3);
+}
+
 .title {
     font-family: var(--font-googlesans);
     font-size: 28px;
     line-height: 32px;
     color: var(--color-black90);
     font-weight: 550;
+}
+
+:global(.wrapper.dark-theme) .title {
+    color: var(--color-black10);
 }
 
 .profileInfoContainer {
@@ -29,6 +44,10 @@
     font-size: 16px;
     line-height: 18px;
     color: var(--color-black80);
+}
+
+:global(.wrapper.dark-theme) .username {
+    color: var(--color-black20);
 }
 
 .pfp {

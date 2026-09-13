@@ -7,6 +7,10 @@
     padding: 0px 32px;
 }
 
+:global(.wrapper.dark-theme) .mainPageWrapper {
+    background-color: var(--color-black100);
+}
+
 .content {
     width: 100%;
     display: grid;
@@ -26,4 +30,15 @@
     margin-bottom: 12px;
     padding: 16px;
     composes: lightGlassElement from "../../styles/lightTheme.css";
+}
+
+:global(.wrapper.dark-theme) .panel {
+    background: var(--dark-theme-main-bg-color);
+    border: 1px solid var(--dark-theme-main-border-color);
+    -webkit-backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    box-shadow: 
+        0 20px 40px var(--dark-box-shadow-color1),
+        inset 0 6px 12px var(--dark-box-shadow-color2),
+        inset 0 -6px 12px var(--dark-box-shadow-color3);
 }
