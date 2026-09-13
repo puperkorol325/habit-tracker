@@ -1,8 +1,16 @@
 import React from "react";
 import styles from "./SettingsPanel.module.css";
 import Switch from "../Switch/Switch";
+import { useAppDispatch } from "../../hooks/redux-hooks";
+import { switchDarkTheme } from "../../state/uiVariablesSlice";
 
 const SettingsPanel: React.FC = () => {
+
+    const dispatch = useAppDispatch();
+
+    const darkThemeChangeHandler = (): void => {
+        dispatch(switchDarkTheme());
+    }
 
     return (
         <>
@@ -13,6 +21,7 @@ const SettingsPanel: React.FC = () => {
                     <Switch
                         id="dark-theme"
                         name="dark-theme"
+                        onChange={darkThemeChangeHandler}
                         />
                 </div>
             </div>

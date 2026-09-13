@@ -8,6 +8,7 @@ export default class LocalStorageInteractions {
     private static NAME = "users_name";
     private static PFP = "users_pfp";
     private static CREATED_AT = "users_created_at";
+    private static DARK_THEME = "dark_theme";
 
     static getUsersLoginData(): LoginData {
         const email = localStorage.getItem(this.EMAIL);
@@ -51,5 +52,18 @@ export default class LocalStorageInteractions {
 
     static setUsersPFP(base64img: string): void {
         localStorage.setItem(this.PFP, base64img);
+    }
+
+    static setDarkThemeMode(mode: boolean): void {
+        localStorage.setItem(this.DARK_THEME, mode ? "1" : "0");
+    }
+
+    static getDarkThemeMode(): boolean {
+        const mode: string | null = localStorage.getItem(this.DARK_THEME);
+        if (mode) {
+            return +mode === 1 ? true : false;
+        }else {
+            return false;
+        }
     }
 }

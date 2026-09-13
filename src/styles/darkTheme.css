@@ -1,0 +1,22 @@
+.lightGlassElement {
+    background: var(--dark-theme-main-bg-color);
+    border: 1px solid var(--dark-theme-main-border-color);
+    -webkit-backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    box-shadow: 
+        0 20px 40px var(--dark-box-shadow-color1),
+        inset 0 6px 12px var(--dark-box-shadow-color2),
+        inset 0 -6px 12px var(--dark-box-shadow-color3);
+}
+
+.text100 {
+    color: var(--color-white);
+}
+
+.text90 {
+    color: var(--color-black90);
+}
+
+.text80 {
+    color: var(--color-black80);
+}

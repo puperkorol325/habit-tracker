@@ -10,7 +10,7 @@
 
 .title {
     font-family: var(--font-googlesans);
-    color: var(--color-black100);
+    composes: text100 from "../../styles/lightTheme.css";;
     font-size: 128px;
     line-height: 130px;
     pointer-events: none;

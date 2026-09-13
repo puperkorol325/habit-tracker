@@ -20,7 +20,7 @@
     padding: 16px;
     background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.681) 50%, rgba(255, 255, 255, 0.3) 90%),
                 radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.681) 50%, rgba(255, 255, 255, 0.3) 90%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--light-theme-main-border-color);
     -webkit-backdrop-filter: blur(1px) url(#liquid-refraction) saturate(10%);
     backdrop-filter: blur(1px) url(#liquid-refraction) saturate(10%);
     border-radius: 24px;
@@ -43,7 +43,7 @@
     font-family: var(--font-googlesans);
     font-size: 20px;
     font-weight: 600;
-    color: var(--color-black100);
+    composes: text100 from "../../styles/lightTheme.css";;
 }
 
 .form {

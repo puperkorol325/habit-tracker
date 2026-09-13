@@ -42,7 +42,7 @@
     font-family: var(--font-googlesans);
     font-size: 48px;
     font-weight: 500;
-    color: var(--color-black100);
+    composes: text100 from "../../styles/lightTheme.css";;
 }
 
 .subtitle {

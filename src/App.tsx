@@ -9,11 +9,15 @@ import MainPanel from './components/MainPanel/MainPanel';
 import ProfilePanel from './components/ProfilePanel/ProfilePanel';
 import NotFound from './pages/NotFound/NotFound';
 import SettingsPanel from './components/SettingsPanel/SettingsPanel';
+import { useAppDispatch, useAppSelector } from './hooks/redux-hooks';
 
 
 function App() {
+
+  const isDarkTheme: boolean = useAppSelector((state) => state.uiVariables.darkTheme);
+
   return (
-    <div className="wrapper">
+    <div className={`wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>
       <Routes>
         <Route path='login' element={ <LoginPage /> } />
         <Route element={ <MainPage /> }>

@@ -4,6 +4,16 @@
 }
 
 :root {
+  --light-theme-main-bg-color: rgba(255, 255, 255, 0.12);
+  --light-theme-main-border-color: rgba(255, 255, 255, 0.4);
+  --light-box-shadow-color1: rgba(0, 0, 0, 0.15);
+  --light-box-shadow-color2: rgba(255, 255, 255, 0.4);
+  --light-box-shadow-color3: rgba(255, 255, 255, 0.1);
+  --dark-theme-main-bg-color: rgba(0, 0, 0, 0.12);
+  --dark-theme-main-border-color: rgba(0, 0, 0, 0.4);
+  --dark-box-shadow-color1: rgba(110, 110, 110, 0.15);
+  --dark-box-shadow-color2: rgba(0, 0, 0, 0.4);
+  --dark-box-shadow-color3: rgba(0, 0, 0, 0.1);
   --color-black100: #0D1924;
   --color-black90: #313B45;
   --color-black80: #4A525B;

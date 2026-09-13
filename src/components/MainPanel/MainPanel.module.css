@@ -33,7 +33,7 @@
     font-size: 14px;
     font-family: var(--font-googlesans);
     font-weight: 500;
-    color: var(--color-black100);
+    composes: text100 from "../../styles/lightTheme.css";;
     margin-left: 12px;
     cursor: pointer;
 }

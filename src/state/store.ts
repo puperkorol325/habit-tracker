@@ -4,13 +4,15 @@ import Day from "../types/Day";
 import { habitReducer } from "./habitSlice";
 import { dayReducer } from "./daySlice";
 import { createPopupReducer } from "./createPopupSlice";
+import { uiVariablesReducer } from "./uiVariablesSlice";
 
 
 export const store = configureStore({
     reducer: {
         habits: habitReducer,
         days: dayReducer,
-        createPopup: createPopupReducer
+        createPopup: createPopupReducer,
+        uiVariables: uiVariablesReducer
     }
 });
 
