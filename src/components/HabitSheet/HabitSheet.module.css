@@ -9,6 +9,7 @@
     padding: 24px 16px;
     text-align: center;
     transition: 0.3s ease-in-out all;
+    user-select: none;
 }
 
 :global(.wrapper.dark-theme) .table td,
@@ -31,10 +32,11 @@
     transform: translate(-50%, -100%);
     visibility: hidden;
     opacity: 0;
-    transition: 0.3s ease-in-out all 0.8s;
+    transition: 0.3s ease-in-out all 0.3s;
 }
 
-.table th[data-tooltip]:hover::after {
+.table th[data-tooltip]:hover::after,
+.table th[data-tooltip]:active::after {
     visibility: visible;
     opacity: 1;
 }

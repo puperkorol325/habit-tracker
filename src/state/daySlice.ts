@@ -51,7 +51,7 @@ const daySlice = createSlice({
         },
         uncheckHabit: (state, action: PayloadAction<checkHabitPayload>) => {
 
-            state.days[action.payload.date].splice(state.days[action.payload.date].indexOf(action.payload.habitId));
+            state.days[action.payload.date].splice(state.days[action.payload.date].indexOf(action.payload.habitId), 1);
         }
     }
 });
