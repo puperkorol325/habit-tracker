@@ -4,6 +4,7 @@
     border-radius: 16px;
     margin-bottom: 12px;
     composes: lightGlassElement from "../../styles/lightTheme.css";
+    transition: 0.3s ease-in-out all;
 }
 
 :global(.wrapper.dark-theme) .sidemenu {
@@ -43,6 +44,11 @@
 }
 
 .active.navItem {
+    color: var(--color-ad-orange50);
+    font-weight: 500;
+}
+
+:global(.wrapper.dark-theme) .active.navItem {
     color: var(--color-ad-orange50);
 }
 

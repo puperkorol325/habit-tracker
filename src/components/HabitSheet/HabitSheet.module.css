@@ -7,6 +7,13 @@
     box-shadow: 0 0 3px 1px var(--color-black40);
     padding: 24px;
     text-align: center;
+    transition: 0.3s ease-in-out all;
+}
+
+:global(.wrapper.dark-theme) .table td,
+:global(.wrapper.dark-theme) .table th {
+    box-shadow: 0 0 3px 1px var(--color-black20);
+    color: var(--color-black10);
 }
 
 .table tr td:first-of-type,
@@ -27,6 +34,10 @@
     background-color: var(--color-black40);
     cursor: not-allowed;
     pointer-events: none;   
+}
+
+:global(.wrapper.dark-theme) .habitCell.nonActive {
+    background-color: var(--color-black30);
 }
 
 .habitCell.done {

@@ -9,6 +9,7 @@
     backdrop-filter: blur(3px);
     background-color: #00000010;
     z-index: 10;
+    transition: 0.3s ease-in-out all;
 }
 
 .popupContainer {
@@ -26,6 +27,12 @@
     border-radius: 24px;
 }
 
+:global(.wrapper.dark-theme) .popupContainer {
+    background: radial-gradient(ellipse at top, rgba(0, 0, 0, 0.681) 50%, rgba(0, 0, 0, 0.3) 90%),
+                radial-gradient(ellipse at bottom, rgba(0, 0, 0, 0.681) 50%, rgba(0, 0, 0, 0.3) 90%);
+    border: 1px solid var(--dark-theme-main-border-color);
+}
+
 .containerTop {
     width: 100%;
     display: flex;
@@ -39,11 +46,19 @@
     cursor: pointer;
 }
 
+:global(.wrapper.dark-theme) .closeButton path {
+    fill: var(--color-white);
+}
+
 .popupTitle {
     font-family: var(--font-googlesans);
     font-size: 20px;
     font-weight: 600;
     composes: text100 from "../../styles/lightTheme.css";;
+}
+
+:global(.wrapper.dark-theme) .popupTitle {
+    color: var(--color-white);
 }
 
 .form {
@@ -65,6 +80,10 @@
     color: var(--color-black80);
     font-weight: 500;
     font-size: 18px;
+}
+
+:global(.wrapper.dark-theme) .label {
+    color: var(--color-black20);
 }
 
 .input {

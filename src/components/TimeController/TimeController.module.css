@@ -6,15 +6,19 @@
     gap: 12px;
     transform: translateX(-50%);
     padding: 12px;
-    background: var(--light-theme-main-bg-color);
-    border: 1px solid var(--light-theme-main-border-color);
-    -webkit-backdrop-filter: blur(24px) url(#liquid-refraction) saturate(80%);
-    backdrop-filter: blur(24px) url(#liquid-refraction) saturate(80%);
-    box-shadow: 
-        0 20px 40px var(--light-box-shadow-color1),
-        inset 0 6px 12px var(--light-box-shadow-color2),
-        inset 0 -6px 12px var(--light-box-shadow-color3);
+    composes: lightGlassElement from "../../styles/lightTheme.css";
     border-radius: 12px;
+}
+
+:global(.wrapper.dark-theme) .timeController {
+    background: var(--dark-theme-main-bg-color);
+    border: 1px solid var(--dark-theme-main-border-color);
+    -webkit-backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    backdrop-filter: blur(12px) url(#liquid-refraction) saturate(140%);
+    box-shadow: 
+        0 20px 40px var(--dark-box-shadow-color1),
+        inset 0 6px 12px var(--dark-box-shadow-color2),
+        inset 0 -6px 12px var(--dark-box-shadow-color3);
 }
 
 .arrow {
@@ -32,8 +36,16 @@
     transition: 0.2s all;
 }
 
+:global(.wrapper.dark-theme) .arrow path {
+    stroke: var(--color-white);
+}
+
 .arrow:hover path {
     stroke: var(--color-black80);
+}
+
+:global(.wrapper.dark-theme) .arrow:hover path {
+    stroke: var(--color-black20);
 }
 
 .arrow:last-of-type {
@@ -46,4 +58,8 @@
     font-weight: 500;
     composes: text100 from "../../styles/lightTheme.css";;
     user-select: none;
+}
+
+:global(.wrapper.dark-theme) .period {
+    color: var(--color-white);
 }

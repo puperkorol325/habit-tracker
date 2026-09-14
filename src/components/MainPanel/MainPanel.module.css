@@ -4,6 +4,10 @@
     border-top: 1px solid var(--color-black30);
 }
 
+:global(.wrapper.dark-theme) .sheet {
+    border-top: 1px solid var(--color-black80);
+}
+
 .filters {
     width: 100%;
     display: flex;
@@ -24,6 +28,10 @@
     color: var(--color-black80);
 }
 
+:global(.wrapper.dark-theme) .filterLabel {
+    color: var(--color-black20)
+}
+
 .resetButton {
     display: flex;
     justify-content: center;
@@ -41,4 +49,8 @@
 .resetIcon {
     width: 14px;
     height: 14px;
+}
+
+:global(.wrapper.dark-theme) .resetIcon path {
+    fill: var(--color-black20);
 }

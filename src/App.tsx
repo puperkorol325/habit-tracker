@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './styles/App.css';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -10,11 +10,22 @@ import ProfilePanel from './components/ProfilePanel/ProfilePanel';
 import NotFound from './pages/NotFound/NotFound';
 import SettingsPanel from './components/SettingsPanel/SettingsPanel';
 import { useAppDispatch, useAppSelector } from './hooks/redux-hooks';
+import { switchDarkTheme } from './state/uiVariablesSlice';
+import LocalStorageInteractions from './classes/LocalStorageInteractions';
 
 
 function App() {
 
+  const dispatch = useAppDispatch();
   const isDarkTheme: boolean = useAppSelector((state) => state.uiVariables.darkTheme);
+
+  useEffect(() => {
+    const ifDarkThemePreferred: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (ifDarkThemePreferred && !isDarkTheme) {
+      dispatch(switchDarkTheme());
+    }
+  }, []);
+
 
   return (
     <div className={`wrapper ${isDarkTheme ? 'dark-theme' : ''}`}>

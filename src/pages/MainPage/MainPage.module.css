@@ -5,6 +5,7 @@
     flex-direction: column;
     background-color: var(--color-black10);
     padding: 0px 32px;
+    transition: 0.3s ease-in-out all;
 }
 
 :global(.wrapper.dark-theme) .mainPageWrapper {
@@ -14,7 +15,7 @@
 .content {
     width: 100%;
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 180px 1fr;
     grid-template-rows: 100%;
     gap: 12px;
     flex: 1;
@@ -30,6 +31,7 @@
     margin-bottom: 12px;
     padding: 16px;
     composes: lightGlassElement from "../../styles/lightTheme.css";
+    transition: 0.3s ease-in-out all;
 }
 
 :global(.wrapper.dark-theme) .panel {

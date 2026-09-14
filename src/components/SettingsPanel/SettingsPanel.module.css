@@ -6,6 +6,10 @@
     margin-bottom: 40px;
 }
 
+:global(.wrapper.dark-theme) .title {
+    color: var(--color-black10);
+}
+
 .settingsWrapper {
     width: 100%;
     display: flex;
@@ -23,4 +27,8 @@
 .settingName {
     color: var(--color-black80);
     font-family: var(--font-googlesans);
+}
+
+:global(.wrapper.dark-theme) .settingName {
+    color: var(--color-black20);
 }

@@ -13,6 +13,10 @@
     margin-bottom: 40px;
 }
 
+:global(.wrapper.dark-theme) .title {
+    color: var(--color-black10);
+}
+
 .mainInfo {
     width: 100%;
     display: flex;
@@ -77,11 +81,19 @@
     font-size: 16px;
 }
 
+:global(.wrapper.dark-theme) .label {
+    color: var(--color-black20);
+}
+
 .emailString {
     font-family: var(--font-googlesans);
     font-weight: 500;
     composes: text100 from "../../styles/lightTheme.css";;
     font-size: 18px;
+}
+
+:global(.wrapper.dark-theme) .emailString {
+    color: var(--color-white);
 }
 
 .textInput {

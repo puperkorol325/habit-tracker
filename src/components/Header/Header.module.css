@@ -8,6 +8,7 @@
     border-radius: 16px;
     margin: 12px 0px;
     composes: lightGlassElement from "../../styles/lightTheme.css";
+    transition: 0.3s ease-in-out all;
 }
 
 :global(.wrapper.dark-theme) .header {
