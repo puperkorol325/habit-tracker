@@ -3,6 +3,7 @@ import styles from "./TimeController.module.css";
 import { Days } from "../../types/Day";
 import ArrowIconRight from "../../icons/ArrowIconRight";
 import { useAppSelector } from "../../hooks/redux-hooks";
+import { addDays, format, subDays } from "date-fns";
 
 interface ITimeControllerProps {
     shownDays: string[];
@@ -17,12 +18,12 @@ const TimeController: React.FC<ITimeControllerProps> = ({ shownDays, handleToPre
     return (
         <div className={styles.timeController}>
             <ArrowIconRight 
-                className={`${styles.arrow} ${days[new Date(new Date().setTime(new Date(shownDays[0]).getTime() - 86400000)).toDateString()] ? '' : styles.disabled}`} 
+                className={`${styles.arrow} ${days[subDays(shownDays[0], 7).toDateString()] ? '' : styles.disabled}`} 
                 onClick={handleToPrevWeek} 
             />
-            <p className={styles.period}>{shownDays[0]} - {shownDays[shownDays.length-1]}</p>
+            <p className={styles.period}>{format(shownDays[0], "P")} - {format(shownDays[shownDays.length-1], "P")}</p>
             <ArrowIconRight 
-                className={`${styles.arrow} ${days[new Date(new Date().setTime(new Date(shownDays[shownDays.length-1]).getTime() + 86400000)).toDateString()] ? '' : styles.disabled}`} 
+                className={`${styles.arrow} ${days[addDays(shownDays[shownDays.length-1], 7).toDateString()] ? '' : styles.disabled}`} 
                 onClick={handleToNextWeek} 
             />
         </div>

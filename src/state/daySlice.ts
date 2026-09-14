@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Day, { Days } from "../types/Day";
-import { aC } from "react-router/dist/development/data-CjO11-hU";
 import LocalStorageInteractions from "../classes/LocalStorageInteractions";
+import { addDays, startOfToday } from "date-fns";
 
 type DayState = {
     days: Days;
@@ -11,19 +11,18 @@ function getAllDays(): Days {
 
     const theFirstDay: Date = new Date(LocalStorageInteractions.getData() || "08-01-2026");
     
-    const current = new Date(theFirstDay.toDateString());
+    let current = new Date(theFirstDay.toDateString());
 
     const days: { [date: string]: Day } = {
 
     };
     
-    const today = new Date();
+    const today = startOfToday();
 
-    while (current.getTime() < today.getTime()) {
-        const dayCopy = new Date(current);
-        days[dayCopy.toDateString()] = [];
+    while (current.getTime() <= today.getTime()) {
+        days[current.toDateString()] = [];
 
-        current.setDate(current.getDate() + 1);
+        current = addDays(current, 1);
     }
 
     return days;

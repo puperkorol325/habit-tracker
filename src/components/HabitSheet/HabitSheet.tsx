@@ -5,6 +5,7 @@ import { checkHabit, uncheckHabit } from "../../state/daySlice";
 import { starHabit } from "../../state/habitSlice";
 import IFilterConditions from "../../interfaces/IFilterConditions";
 import Day, { Days } from "../../types/Day";
+import { format } from "date-fns";
 
 interface IHabitSheetProps {
     filter: IFilterConditions;
@@ -41,7 +42,7 @@ const HabitSheet: React.FC<IHabitSheetProps> = ({ filter, shownDays }) => {
                         shownDays.map(item => {
 
                             return (
-                                <th key={item}>{`${item}`}</th>
+                                <th data-tooltip={format(item, 'PPPP')} key={item}>{`${format(new Date(item), 'PP')}`}</th>
                             )
                         })
                     }

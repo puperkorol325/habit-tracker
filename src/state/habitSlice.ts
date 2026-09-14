@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Habit } from "../types/Habit";
+import { startOfToday } from "date-fns";
 
 type HabitState = {
     habits: Habit[];
@@ -21,7 +22,7 @@ const habitSlice = createSlice({
                 habits: [...state.habits,  { 
                     title: action.payload, 
                     userID: 1,
-                    cretedAt: new Date().toDateString(), 
+                    cretedAt: startOfToday().toDateString(), 
                     id: (state.habits[state.habits.length-1]?.id || 0)+1,
                     starred: false
                 }],

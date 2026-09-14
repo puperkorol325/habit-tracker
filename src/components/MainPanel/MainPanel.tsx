@@ -4,9 +4,9 @@ import ResetIcon from "../../icons/ResetIcon";
 import HabitSheet from "../HabitSheet/HabitSheet";
 import CreateHabitControl from "../CreateHabitControl/CreateHabitControl";
 import IFilterConditions from "../../interfaces/IFilterConditions";
-import Day, { Days } from "../../types/Day";
 import { useAppSelector } from "../../hooks/redux-hooks";
 import TimeController from "../TimeController/TimeController";
+import { addDays, startOfDay, startOfToday, subDays } from "date-fns";
 
 const MainPanel: React.FC = () => {
 
@@ -60,12 +60,10 @@ const MainPanel: React.FC = () => {
 
     // setup this week
     useEffect(() => {
-        const today = new Date();
-        const todayDayOfWeek = new Date().getDay();
+        const today = startOfToday();
+        const todayDayOfWeek = today.getDay();
 
-        const beginingOfTheWeek = new Date();
-
-        beginingOfTheWeek.setDate(today.getDate() - todayDayOfWeek);
+        const beginingOfTheWeek = subDays(today, (todayDayOfWeek - 1));
 
         setCurrentStartOfTheWeek(new Date(beginingOfTheWeek.toDateString()));
     }, []);
@@ -76,14 +74,14 @@ const MainPanel: React.FC = () => {
 
     function getWeek(): void {
         setShownDays([]);
-        const current = new Date(currentStartOfTheWeek);
+        let current = new Date(currentStartOfTheWeek);
         for (let i = 0; i < 7; i++) {
             const dayCopy = new Date(current);
             if (days[dayCopy.toDateString()]) {
                 setShownDays(state => [...state, dayCopy.toDateString()]);
             }
 
-            current.setDate(current.getDate() + 1);
+            current = addDays(current, 1);
         }
     }
 
@@ -125,11 +123,13 @@ const MainPanel: React.FC = () => {
                 <HabitSheet shownDays={shownDays} filter={filter}/>
             </div>
             <CreateHabitControl /> 
-            <TimeController 
-                shownDays={shownDays} 
-                handleToNextWeek={handleToNextWeek} 
-                handleToPrevWeek={handleToPrevWeek} 
-            />
+            {shownDays.length > 0 && (
+                <TimeController 
+                    shownDays={shownDays} 
+                    handleToNextWeek={handleToNextWeek} 
+                    handleToPrevWeek={handleToPrevWeek} 
+                />
+            )}
         </>        
     );
 };
