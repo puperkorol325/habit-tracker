@@ -1,5 +1,5 @@
-import { LoginData } from "../types/LocalStorageTypes/LoginData";
-import { SignUpData } from "../types/LocalStorageTypes/SignUpData";
+import { LoginUserDTO } from "./DTO/LoginUserDTO";
+import { SignUpUserDTO } from "./DTO/SignUpUserDTO";
 
 export default class LocalStorageInteractions {
 
@@ -10,14 +10,18 @@ export default class LocalStorageInteractions {
     private static CREATED_AT = "users_created_at";
     private static DARK_THEME = "dark_theme";
 
-    static getUsersLoginData(): LoginData {
+    static getUsersLoginData(): LoginUserDTO | null {
         const email = localStorage.getItem(this.EMAIL);
         const password = localStorage.getItem(this.PASSWORD);
 
-        return { email, password }
+        if (email && password) {
+            return new LoginUserDTO(email, password);
+        } else {
+            return null;
+        }
     }
 
-    static setUsersData(data: SignUpData) {
+    static setUsersData(data: SignUpUserDTO) {
         if (data.email && data.password && data.name) {
             localStorage.setItem(this.EMAIL, data.email);
             localStorage.setItem(this.PASSWORD, data.password);

@@ -13,5 +13,11 @@ You may choose time ranges for your habit you needed. For instance: daily, weekl
  - Redux Toolkit
  - Redux
  - React Router
+ - date-fnm
 
 (The list of used technologies will be filling up)
+
+
+## Database UML diagram
+
+![alt text](image.png)
